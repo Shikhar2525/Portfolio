@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { CssBaseline, ThemeProvider, Box, CircularProgress } from '@mui/material';
 import { theme } from './theme';
+import './styles/sections.css';
 
 // Lazy load components
 const AboutMe = lazy(() => import('./components/AboutMe'));
@@ -10,6 +11,7 @@ const ClientsSection = lazy(() => import('./components/ClientsSection'));
 const SocialLinks = lazy(() => import('./components/SocialLinks'));
 const GitHubSection = lazy(() => import('./components/GitHubSection'));
 const Achievements = lazy(() => import('./components/Achievements'));
+const FloatingNav = lazy(() => import('./components/FloatingNav'));
 
 // Loading fallback
 const LoadingFallback = () => (
@@ -28,6 +30,15 @@ const LoadingFallback = () => (
 // Add this in the head of your index.html:
 // <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+const sections = [
+  { id: 'about' },
+  { id: 'experience' },
+  { id: 'skills' },
+  { id: 'achievements' },
+  { id: 'github' },
+  { id: 'clients' },
+];
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -35,48 +46,37 @@ function App() {
       <Box
         component="main"
         sx={{
-          overflow: 'hidden',
+          overflowX: 'hidden', // Prevent horizontal scroll
+          width: '100%',
+          maxWidth: '100vw',
           position: 'relative',
-          contain: 'paint layout style', // Improve performance
-          isolation: 'isolate', // Create stacking context
           '& > *': {
-            position: 'relative',
-            zIndex: 1,
-            // Optimize all direct children
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
-            WebkitFontSmoothing: 'antialiased',
-            perspective: 1000,
-            transform: 'translateZ(0)',
-          },
-          // Optimize scrolling
-          '&::-webkit-scrollbar': {
-            width: '8px',
-          },
-          '&::-webkit-scrollbar-track': {
-            background: 'transparent',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            background: 'rgba(0,0,0,0.2)',
-            borderRadius: '4px',
-          },
-          // Disable animations on mobile devices
-          '@media (prefers-reduced-motion: reduce)': {
-            '& *': {
-              animation: 'none !important',
-              transition: 'none !important',
-            },
-          },
+            maxWidth: '100%',
+            boxSizing: 'border-box'
+          }
         }}
       >
         <Suspense fallback={<LoadingFallback />}>
+          <FloatingNav />
           <SocialLinks />
-          <AboutMe />
-          <WorkExperience />
-          <SkillsChart />
-          <Achievements />
-          <GitHubSection />
-          <ClientsSection />
+          {sections.map(section => (
+            <Box
+              key={section.id}
+              id={section.id}
+              sx={{
+                minHeight: '100vh',
+                position: 'relative',
+                scrollMarginTop: '0px',
+              }}
+            >
+              {section.id === 'about' && <AboutMe />}
+              {section.id === 'experience' && <WorkExperience />}
+              {section.id === 'skills' && <SkillsChart />}
+              {section.id === 'achievements' && <Achievements />}
+              {section.id === 'github' && <GitHubSection />}
+              {section.id === 'clients' && <ClientsSection />}
+            </Box>
+          ))}
         </Suspense>
       </Box>
     </ThemeProvider>

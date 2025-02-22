@@ -1,0 +1,30 @@
+.section-active {
+  animation: sectionFocus 0.8s ease-out forwards;
+}
+
+@keyframes sectionFocus {
+  0% {
+    transform: scale(1);
+    background: transparent;
+  }
+  50% {
+    transform: scale(1.02);
+    background: rgba(108, 99, 255, 0.05);
+    box-shadow: 0 0 30px rgba(108, 99, 255, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    background: transparent;
+  }
+}
+
+.section-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+.section-active .section-content {
+  opacity: 1;
+  transform: translateY(0);
+}

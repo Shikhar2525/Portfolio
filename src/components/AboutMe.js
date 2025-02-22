@@ -215,7 +215,7 @@ const AboutMe = () => {
               >
                 <EmailIcon sx={{ fontSize: 20 }} />
                 <Typography variant="body1">
-                  shikhar.mandloi@email.com
+                  shikhar.mandloi@gmail.com
                 </Typography>
               </Box>
               <Box 

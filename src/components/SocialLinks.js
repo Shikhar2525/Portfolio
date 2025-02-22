@@ -40,27 +40,26 @@ const SocialLinks = () => {
     <Box
       sx={{
         position: 'fixed',
-        top: { xs: 20, sm: 20 }, // Keep it at top for both
-        right: { xs: 20, sm: 90 },
-        transform: 'none', // Remove transform that was causing issues
+        top: { xs: 20, sm: 20 },
+        right: { xs: 15, md: 30 }, // Match FloatingNav positioning
         zIndex: 99999,
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' }, // Vertical on mobile, horizontal on desktop
+        flexDirection: { xs: 'column', sm: 'row' },
         gap: { xs: 2, sm: 1 },
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(10px)',
         padding: { xs: '12px 8px', sm: '8px 12px' },
-        borderRadius: '30px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        borderRadius: '20px', // Match FloatingNav border radius
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', // Match FloatingNav shadow
         border: '1px solid rgba(255, 255, 255, 0.2)',
-        alignItems: 'center', // Center icons
+        alignItems: 'center',
       }}
     >
       {socialLinks.map((social) => (
         <Tooltip 
           key={social.name} 
           title={social.name}
-          placement="left" // Always show tooltip on left
+          placement="left" // Changed to left to be consistent
           arrow
         >
           <IconButton
