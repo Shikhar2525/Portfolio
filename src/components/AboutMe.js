@@ -4,6 +4,7 @@ import { keyframes } from '@mui/system';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import CVButton from './CVButton';
+import profileImage from '../images/profile.jpeg'; // Add this import
 
 const fadeInUp = keyframes`
   from {
@@ -136,24 +137,28 @@ const AboutMe = () => {
                 },
               }}
             >
-              <img src="/profile.jpeg" alt="Shikhar Mandloi" style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                borderRadius: '50%',
-                border: '4px solid white',
-                boxShadow: '0 0 25px rgba(0,0,0,0.1)',
-                transition: 'all 0.3s ease-in-out',
-                filter: 'grayscale(100%) contrast(1.1)',
-                position: 'relative',
-                zIndex: 2,
-                '&:hover': {
-                  transform: 'scale(1.02)',
-                  filter: 'grayscale(0%) contrast(1.1)',
-                  boxShadow: '0 0 30px rgba(108, 99, 255, 0.3)',
-                }
-              }} />
+              <img 
+                src={profileImage}  // Change this line
+                alt="Shikhar Mandloi" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  borderRadius: '50%',
+                  border: '4px solid white',
+                  boxShadow: '0 0 25px rgba(0,0,0,0.1)',
+                  transition: 'all 0.3s ease-in-out',
+                  filter: 'grayscale(100%) contrast(1.1)',
+                  position: 'relative',
+                  zIndex: 2,
+                  '&:hover': {
+                    transform: 'scale(1.02)',
+                    filter: 'grayscale(0%) contrast(1.1)',
+                    boxShadow: '0 0 30px rgba(108, 99, 255, 0.3)',
+                  }
+                }} 
+              />
             </Box>
           </Grid>
           <Grid 
