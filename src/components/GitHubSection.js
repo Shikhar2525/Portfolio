@@ -22,6 +22,8 @@ import WebIcon from '@mui/icons-material/Web';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import UpdateIcon from '@mui/icons-material/Update';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { keyframes } from '@mui/system';
 
 const getRepoColor = (language) => {
   const colorMap = {
@@ -39,6 +41,12 @@ const getRepoColor = (language) => {
   };
   return colorMap[language] || colorMap.default;
 };
+
+// Add this animation
+const starPulse = keyframes`
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+`;
 
 const GitHubSection = () => {
   const [repos, setRepos] = useState([]);
@@ -78,6 +86,10 @@ const GitHubSection = () => {
 
     fetchGitHubData();
   }, []);
+
+  const isSpecialProject = (repoName) => {
+    return repoName.toLowerCase() === 'splitup';
+  };
 
   if (loading) {
     return (
@@ -211,6 +223,7 @@ const GitHubSection = () => {
               <Paper
                 elevation={0}
                 sx={{
+                  position: 'relative', // Add this
                   p: { xs: 2, md: 3 },
                   height: '100%',
                   display: 'flex',
@@ -227,6 +240,29 @@ const GitHubSection = () => {
                   }
                 }}
               >
+                {/* Add Featured Star for SplitUp */}
+                {isSpecialProject(repo.name) && (
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: -10,
+                      right: 8,
+                      zIndex: 2,
+                    }}
+                  >
+                    <Tooltip title="Featured Project" arrow>
+                      <WorkspacePremiumIcon 
+                        sx={{
+                          fontSize: '42px',
+                          color: '#FFD700',
+                          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
+                          animation: `${starPulse} 2s infinite ease-in-out`,
+                        }}
+                      />
+                    </Tooltip>
+                  </Box>
+                )}
+
                 <Box sx={{ 
                   display: 'flex', 
                   alignItems: 'flex-start',
