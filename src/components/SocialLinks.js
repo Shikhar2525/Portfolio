@@ -40,8 +40,8 @@ const SocialLinks = () => {
     <Box
       sx={{
         position: 'fixed',
-        top: { xs: 20, sm: 20 },
-        right: { xs: 15, md: 30 }, // Match FloatingNav positioning
+        top: { xs: 30, sm: 30 }, // Increased from 20px to 40px
+        right: { xs: 20, md: 35 }, // Match FloatingNav positioning
         zIndex: 99999,
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },

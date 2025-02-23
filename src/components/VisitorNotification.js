@@ -32,6 +32,11 @@ const float = keyframes`
   100% { transform: translateY(0px); }
 `;
 
+const bounce = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+`;
+
 const VisitorNotification = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
@@ -85,69 +90,69 @@ const VisitorNotification = () => {
   };
 
   return (
-    <>
+    <Box sx={{ 
+      position: 'fixed',
+      bottom: 30,
+      right: 30,
+      zIndex: 1000,
+      overflow: 'hidden', // Add this to prevent scrollbars
+      animation: `${bounce} 3s ease-in-out infinite`, // Add bounce animation here
+    }}>
       <Tooltip 
         title="Say Hi! 👋" 
         placement="left"
         TransitionComponent={Zoom}
       >
-        <Box
+        <Button
+          onClick={() => setOpen(true)}
+          startIcon={<WavingHandIcon />}
           sx={{
-            position: 'fixed',
-            bottom: 30,
-            right: 30,
-            zIndex: 1000,
-            animation: `${float} 3s ease-in-out infinite`,
+            background: 'linear-gradient(45deg, #6C63FF 30%, #FF4081 90%)',
+            color: 'white',
+            boxShadow: '0 3px 15px rgba(108, 99, 255, 0.3)',
+            px: 3,
+            py: 1.5,
+            borderRadius: 30,
+            textTransform: 'none',
+            fontSize: { xs: '0.875rem', sm: '1rem' },
+            fontWeight: 500,
+            whiteSpace: 'nowrap', // Add this to prevent text wrapping
+            overflow: 'hidden', // Add this to contain content
+            '&:hover': {
+              background: 'linear-gradient(45deg, #5B52FF 30%, #FF2D71 90%)',
+              transform: 'scale(1.05) translateY(0)', // Modify this to keep bounce visible
+              boxShadow: '0 5px 20px rgba(108, 99, 255, 0.4)',
+            },
+            transition: 'all 0.3s ease',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            display: { xs: 'none', sm: 'inline-flex' }, // Hide text on mobile
           }}
         >
-          <Button
-            onClick={() => setOpen(true)}
-            startIcon={<WavingHandIcon />}
-            sx={{
-              background: 'linear-gradient(45deg, #6C63FF 30%, #FF4081 90%)',
-              color: 'white',
-              boxShadow: '0 3px 15px rgba(108, 99, 255, 0.3)',
-              px: 3,
-              py: 1.5,
-              borderRadius: 30,
-              textTransform: 'none',
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              fontWeight: 500,
-              '&:hover': {
-                background: 'linear-gradient(45deg, #5B52FF 30%, #FF2D71 90%)',
-                transform: 'scale(1.05)',
-                boxShadow: '0 5px 20px rgba(108, 99, 255, 0.4)',
-              },
-              transition: 'all 0.3s ease',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              display: { xs: 'none', sm: 'inline-flex' }, // Hide text on mobile
-            }}
-          >
-            Say Hi !
-          </Button>
-          
-          {/* Mobile version - icon only */}
-          <IconButton
-            onClick={() => setOpen(true)}
-            sx={{
-              width: 56,
-              height: 56,
-              background: 'linear-gradient(45deg, #6C63FF 30%, #FF4081 90%)',
-              color: 'white',
-              boxShadow: '0 3px 15px rgba(108, 99, 255, 0.3)',
-              display: { xs: 'flex', sm: 'none' }, // Show only on mobile
-              '&:hover': {
-                background: 'linear-gradient(45deg, #5B52FF 30%, #FF2D71 90%)',
-                transform: 'scale(1.1)',
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            <WavingHandIcon />
-          </IconButton>
-        </Box>
+          Say Hi !
+        </Button>
       </Tooltip>
+
+      {/* Mobile version with improved containment */}
+      <IconButton
+        onClick={() => setOpen(true)}
+        sx={{
+          display: { xs: 'flex', sm: 'none' },
+          width: 56,
+          height: 56,
+          background: 'linear-gradient(45deg, #6C63FF 30%, #FF4081 90%)',
+          color: 'white',
+          boxShadow: '0 3px 15px rgba(108, 99, 255, 0.3)',
+          overflow: 'hidden', // Add this to contain content
+          '&:hover': {
+            background: 'linear-gradient(45deg, #5B52FF 30%, #FF2D71 90%)',
+            transform: 'scale(1.1) translateY(0)', // Modify this to keep bounce visible
+          },
+          transition: 'all 0.3s ease',
+        }}
+      >
+        <WavingHandIcon />
+      </IconButton>
 
       <Dialog 
         open={open} 
@@ -242,7 +247,7 @@ const VisitorNotification = () => {
           {snackbar.message}
         </Alert>
       </Snackbar>
-    </>
+    </Box>
   );
 };
 
