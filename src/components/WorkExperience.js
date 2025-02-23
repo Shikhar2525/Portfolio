@@ -289,7 +289,7 @@ const WorkExperience = () => {
       ref={sectionRef}
       id="experience"
       sx={{
-        py: { xs: 6, md: 12 },
+        py: { xs: 4, md: 12 }, // Reduced padding on mobile
         position: 'relative',
         overflow: 'visible',
         background: 'linear-gradient(135deg, #f0f4ff 0%, #e6e9ff 100%)',

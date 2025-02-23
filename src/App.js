@@ -53,6 +53,10 @@ function App() {
           '& > *': {
             maxWidth: '100%',
             boxSizing: 'border-box'
+          },
+          // Add this to remove any potential gaps
+          '& > div': {
+            marginBottom: '-1px', // Overlap sections slightly to prevent gaps
           }
         }}
       >
@@ -64,9 +68,14 @@ function App() {
               key={section.id}
               id={section.id}
               sx={{
-                minHeight: '100vh',
+                minHeight: { xs: 'auto', md: '100vh' }, // Allow sections to shrink on mobile
                 position: 'relative',
                 scrollMarginTop: '0px',
+                display: 'flex',
+                flexDirection: 'column',
+                '& > *': {
+                  flex: 1,
+                },
               }}
             >
               {section.id === 'about' && <AboutMe />}
