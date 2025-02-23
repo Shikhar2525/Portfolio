@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Shikhar Mandloi",
+  "jobTitle": "Frontend Developer",
+  "url": "https://shikhar2525.github.io/Portfolio/",
+  "sameAs": [
+    "https://www.linkedin.com/in/shikhar-mandloi-8657b6182/",
+    "https://github.com/Shikhar2525"
+  ],
+  "knowsAbout": [
+    "React.js",
+    "JavaScript",
+    "Frontend Development",
+    "Web Development",
+    "UI/UX Design",
+    "Responsive Design"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Epam Systems"
+  }
+}

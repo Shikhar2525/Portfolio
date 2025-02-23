@@ -57,100 +57,111 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       
-      {/* Modern Gradient Border */}
-      <Box
-        sx={{
-          position: 'fixed',
-          inset: '20px',
-          pointerEvents: 'none',
-          zIndex: 1,  // Changed from 9999 to 1 to go behind content
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            inset: 0,
-            borderRadius: '20px',
-            padding: '2px',
-            background: 'linear-gradient(45deg, #6C63FF, #FF4081, #6C63FF)',
-            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-            WebkitMaskComposite: 'xor',
-            maskComposite: 'exclude',
-            animation: `${borderGlow} 3s infinite`,
-            opacity: 0.8,
-          },
-        }}
-      />
+      {/* Add semantic HTML structure */}
+      <header role="banner" style={{ display: 'none' }}>
+        <h1>Shikhar Mandloi - Frontend Developer Portfolio</h1>
+      </header>
 
-      {/* Content Container */}
-      <Box
-        sx={{
-          position: 'fixed',
-          inset: '20px',
-          overflow: 'auto',
-          borderRadius: '20px',
-          maxWidth: '100vw', // Add this
-          boxSizing: 'border-box', // Add this
-          '&::-webkit-scrollbar': {
-            width: '8px',
-            background: 'transparent',
-          },
-          '&::-webkit-scrollbar-track': {
-            background: 'rgba(0,0,0,0.05)',
-            borderRadius: '4px',
-            margin: '4px',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            background: 'rgba(108, 99, 255, 0.3)',
-            borderRadius: '4px',
-            '&:hover': {
-              background: 'rgba(108, 99, 255, 0.5)',
-            },
-          },
-        }}
-      >
+      <main role="main" aria-label="Portfolio content">
+        {/* Modern Gradient Border */}
         <Box
-          component="main"
           sx={{
-            position: 'relative',
-            minHeight: '100%',
-            maxWidth: '100%', // Add this
-            overflowX: 'hidden', // Add this
-            '& > *': {
-              maxWidth: '100%',
-              boxSizing: 'border-box',
-              overflowX: 'hidden', // Add this
+            position: 'fixed',
+            inset: '20px',
+            pointerEvents: 'none',
+            zIndex: 1,  // Changed from 9999 to 1 to go behind content
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '20px',
+              padding: '2px',
+              background: 'linear-gradient(45deg, #6C63FF, #FF4081, #6C63FF)',
+              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              WebkitMaskComposite: 'xor',
+              maskComposite: 'exclude',
+              animation: `${borderGlow} 3s infinite`,
+              opacity: 0.8,
+            },
+          }}
+        />
+
+        {/* Content Container */}
+        <Box
+          sx={{
+            position: 'fixed',
+            inset: '20px',
+            overflow: 'auto',
+            borderRadius: '20px',
+            maxWidth: '100vw', // Add this
+            boxSizing: 'border-box', // Add this
+            '&::-webkit-scrollbar': {
+              width: '8px',
+              background: 'transparent',
+            },
+            '&::-webkit-scrollbar-track': {
+              background: 'rgba(0,0,0,0.05)',
+              borderRadius: '4px',
+              margin: '4px',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: 'rgba(108, 99, 255, 0.3)',
+              borderRadius: '4px',
+              '&:hover': {
+                background: 'rgba(108, 99, 255, 0.5)',
+              },
             },
           }}
         >
-          <Suspense fallback={<LoadingFallback />}>
-            <VisitorNotification />
-            <FloatingNav />
-            <SocialLinks />
-            {sections.map(section => (
-              <Box
-                key={section.id}
-                id={section.id}
-                sx={{
-                  minHeight: { xs: 'auto', md: '100vh' },
-                  position: 'relative',
-                  scrollMarginTop: '0px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  '& > *': {
-                    flex: 1,
-                  },
-                }}
-              >
-                {section.id === 'about' && <AboutMe />}
-                {section.id === 'experience' && <WorkExperience />}
-                {section.id === 'skills' && <SkillsChart />}
-                {section.id === 'achievements' && <Achievements />}
-                {section.id === 'github' && <GitHubSection />}
-                {section.id === 'clients' && <ClientsSection />}
-              </Box>
-            ))}
-          </Suspense>
+          <Box
+            component="main"
+            sx={{
+              position: 'relative',
+              minHeight: '100%',
+              maxWidth: '100%', // Add this
+              overflowX: 'hidden', // Add this
+              '& > *': {
+                maxWidth: '100%',
+                boxSizing: 'border-box',
+                overflowX: 'hidden', // Add this
+              },
+            }}
+          >
+            <Suspense fallback={<LoadingFallback />}>
+              <VisitorNotification />
+              <FloatingNav />
+              <SocialLinks />
+              {sections.map(section => (
+                <Box
+                  key={section.id}
+                  id={section.id}
+                  sx={{
+                    minHeight: { xs: 'auto', md: '100vh' },
+                    position: 'relative',
+                    scrollMarginTop: '0px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    '& > *': {
+                      flex: 1,
+                    },
+                  }}
+                >
+                  {section.id === 'about' && <AboutMe />}
+                  {section.id === 'experience' && <WorkExperience />}
+                  {section.id === 'skills' && <SkillsChart />}
+                  {section.id === 'achievements' && <Achievements />}
+                  {section.id === 'github' && <GitHubSection />}
+                  {section.id === 'clients' && <ClientsSection />}
+                </Box>
+              ))}
+            </Suspense>
+          </Box>
         </Box>
-      </Box>
+      </main>
+
+      <footer role="contentinfo" style={{ display: 'none' }}>
+        <p>© 2024 Shikhar Mandloi. All rights reserved.</p>
+      </footer>
 
       {/* Corner Accents - moved to front */}
       {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner, i) => (
