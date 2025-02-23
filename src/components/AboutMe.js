@@ -9,7 +9,7 @@ import profileImage from '../images/profile.jpeg'; // Add this import
 const fadeInUp = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -29,6 +29,11 @@ const gradient = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
+const shine = keyframes`
+  0% { background-position: -200px; }
+  100% { background-position: 200px; }
+`;
+
 const AboutMe = () => {
   const theme = useTheme();
 
@@ -39,7 +44,8 @@ const AboutMe = () => {
         minHeight: { xs: 'auto', md: '100vh' },
         py: { xs: 6, md: 12 },
         position: 'relative',
-        background: 'linear-gradient(135deg, #E3FDF5 0%, #FFE6FA 100%)',
+        background: 'linear-gradient(135deg, #f5f7ff 0%, #f0e9ff 100%)',
+        overflow: 'hidden',
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -70,27 +76,27 @@ const AboutMe = () => {
           position: 'absolute',
           top: '10%',
           left: '5%',
-          width: '20px',
-          height: '20px',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%)',
           borderRadius: '50%',
-          background: 'rgba(91, 120, 246, 0.2)',
-          animation: `${float} 6s ease-in-out infinite`,
-          pointerEvents: 'none',
+          filter: 'blur(40px)',
+          animation: `${float} 8s infinite ease-in-out`,
           zIndex: 0,
         }}
       />
       <Box
         sx={{
           position: 'absolute',
-          bottom: '15%',
-          right: '10%',
-          width: '30px',
-          height: '30px',
-          borderRadius: '8px',
-          background: 'rgba(139, 92, 246, 0.15)',
-          animation: `${float} 8s ease-in-out infinite`,
-          animationDelay: '-2s',
-          pointerEvents: 'none',
+          bottom: '10%',
+          right: '5%',
+          width: '250px',
+          height: '250px',
+          background: 'radial-gradient(circle, rgba(255, 64, 129, 0.1) 0%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(40px)',
+          animation: `${float} 8s infinite ease-in-out reverse`,
+          animationDelay: '-4s',
           zIndex: 0,
         }}
       />
@@ -102,7 +108,7 @@ const AboutMe = () => {
           zIndex: 1,
         }}
       >
-        <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
+        <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
           <Grid 
             item 
             xs={12} 
@@ -117,47 +123,48 @@ const AboutMe = () => {
             <Box
               sx={{
                 position: 'relative',
-                width: { xs: 200, sm: 280 },
-                height: { xs: 200, sm: 280 },
+                width: { xs: 240, sm: 320 },
+                height: { xs: 240, sm: 320 },
                 mx: 'auto',
                 zIndex: 2,
                 '&::before': {
                   content: '""',
                   position: 'absolute',
-                  top: -8,
-                  left: -8,
-                  right: -8,
-                  bottom: -8,
-                  background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.2) 0%, rgba(255, 64, 129, 0.2) 100%)',
+                  inset: -12,
+                  background: 'linear-gradient(135deg, #6C63FF 0%, #FF4081 100%)',
                   borderRadius: '50%',
-                  filter: 'blur(15px)',
-                  opacity: 0.5,
-                  pointerEvents: 'none',
-                  zIndex: -1,
+                  opacity: 0.15,
+                  filter: 'blur(10px)',
+                },
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  inset: -2,
+                  background: 'linear-gradient(135deg, #6C63FF 0%, #FF4081 100%)',
+                  borderRadius: '50%',
+                  animation: `${shine} 6s infinite linear`,
                 },
               }}
             >
-              <img 
-                src={profileImage}  // Change this line
-                alt="Shikhar Mandloi" 
-                style={{
+              <Box
+                component="img"
+                src={profileImage}
+                alt="Shikhar Mandloi"
+                sx={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'center',
                   borderRadius: '50%',
                   border: '4px solid white',
-                  boxShadow: '0 0 25px rgba(0,0,0,0.1)',
-                  transition: 'all 0.3s ease-in-out',
-                  filter: 'grayscale(100%) contrast(1.1)',
                   position: 'relative',
-                  zIndex: 2,
+                  zIndex: 1,
+                  transition: 'all 0.5s ease',
+                  filter: 'grayscale(100%)',
                   '&:hover': {
+                    filter: 'grayscale(0%)',
                     transform: 'scale(1.02)',
-                    filter: 'grayscale(0%) contrast(1.1)',
-                    boxShadow: '0 0 30px rgba(108, 99, 255, 0.3)',
                   }
-                }} 
+                }}
               />
             </Box>
           </Grid>
@@ -168,17 +175,21 @@ const AboutMe = () => {
             sx={{
               position: 'relative',
               zIndex: 2,
+              animation: `${fadeInUp} 1s ease-out 0.3s`,
+              animationFillMode: 'backwards',
             }}
           >
             <Typography 
               variant="h2" 
               gutterBottom
               sx={{ 
-                fontSize: { xs: '2rem', md: '3rem' },
-                fontWeight: 700,
-                background: 'linear-gradient(90deg, #2A2B2E 0%, #6C63FF 100%)',
+                fontSize: { xs: '2.5rem', md: '3.5rem' },
+                fontWeight: 800,
+                background: 'linear-gradient(45deg, #2A2B2E, #6C63FF)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                mb: 2,
+                textAlign: { xs: 'center', md: 'left' },
               }}
             >
               Shikhar Mandloi
@@ -187,7 +198,11 @@ const AboutMe = () => {
               variant="h4" 
               gutterBottom
               color="primary"
-              sx={{ fontWeight: 600 }}
+              sx={{ 
+                fontWeight: 600,
+                mb: 3,
+                textAlign: { xs: 'center', md: 'left' },
+              }}
             >
               Frontend Developer
             </Typography>
@@ -195,12 +210,18 @@ const AboutMe = () => {
               variant="body1" 
               paragraph 
               color="primary.light"
-              sx={{ mb: 4 }}
+              sx={{ 
+                mb: 4,
+                color: 'text.secondary',
+                fontSize: '1.1rem',
+                lineHeight: 1.8,
+                textAlign: { xs: 'center', md: 'left' },
+              }}
             >
-              A passionate Frontend Developer specializing in creating beautiful, responsive, and user-friendly web applications. 
-              With expertise in React.js and modern frontend technologies, I transform designs into seamless interactive experiences.
+              A passionate Frontend Developer with expertise in creating beautiful, responsive, and user-friendly web applications. 
+              Specialized in React.js and modern frontend technologies, I transform creative designs into seamless interactive experiences.
             </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: { xs: 'center', md: 'flex-start' }, mb: 4 }}>
               <Box 
                 component="a"
                 href="mailto:shikhar.mandloi@email.com"
@@ -246,7 +267,7 @@ const AboutMe = () => {
                 </Typography>
               </Box>
             </Box>
-            <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
+            <Box sx={{ mt: 4, display: 'flex', gap: 3, justifyContent: { xs: 'center', md: 'flex-start' } }}>
               <CVButton />
             </Box>
           </Grid>

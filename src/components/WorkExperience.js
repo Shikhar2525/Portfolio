@@ -396,7 +396,7 @@ const WorkExperience = () => {
               fontWeight: 500,
             }}
           >
-            {calculateTotalExperience(experiences)}+ Years of Professional Experience
+            {calculateTotalExperience(experiences)+1}+ Years of Professional Experience
           </Typography>
           <Box
             sx={{

@@ -77,7 +77,7 @@ const CVButton = ({ variant = "contained", size = "medium" }) => {
           }} />
         }
       >
-        Resume
+        View / Download CV
       </Button>
       <Menu
         anchorEl={anchorEl}
