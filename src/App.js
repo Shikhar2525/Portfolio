@@ -12,6 +12,7 @@ const SocialLinks = lazy(() => import('./components/SocialLinks'));
 const GitHubSection = lazy(() => import('./components/GitHubSection'));
 const Achievements = lazy(() => import('./components/Achievements'));
 const FloatingNav = lazy(() => import('./components/FloatingNav'));
+const VisitorNotification = lazy(() => import('./components/VisitorNotification'));
 
 // Loading fallback
 const LoadingFallback = () => (
@@ -64,6 +65,7 @@ function App() {
         }}
       >
         <Suspense fallback={<LoadingFallback />}>
+          <VisitorNotification />
           <FloatingNav />
           <SocialLinks />
           {sections.map(section => (
