@@ -12,8 +12,6 @@ import {
 } from '@mui/material';
 import { keyframes } from '@mui/system';
 import WorkIcon from '@mui/icons-material/Work';
-import CodeIcon from '@mui/icons-material/Code';
-import SchoolIcon from '@mui/icons-material/School';
 
 const fadeIn = keyframes`
   from {
@@ -206,12 +204,6 @@ const WorkExperience = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  const skills = {
-    primary: ['React', 'TypeScript', 'JavaScript', 'HTML5', 'SCSS', 'GraphQL', 'Material UI', 'Jest', 'Open search', 'ChartJs'],
-    familiar: ['Git', 'Figma', 'Jira', 'Agile Development', 'VSCode', 'Apollo Client', 'Angular', 'React-router'],
-    languages: ['English', 'Hindi']
-  };
 
   const experiences = [
     {
@@ -641,39 +633,6 @@ const WorkExperience = () => {
               </Paper>
             </Box>
           ))}
-        </Box>
-
-        {/* Skills */}
-        <Box sx={{ mt: 8 }}>
-          <Typography variant="h4" gutterBottom>
-            Skills & Technologies
-          </Typography>
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom>
-                Primary Skills
-              </Typography>
-              {skills.primary.map((skill, index) => (
-                <Chip
-                  key={index}
-                  label={skill}
-                  sx={{ mr: 1, mb: 1 }}
-                />
-              ))}
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h6" gutterBottom>
-                Familiar With
-              </Typography>
-              {skills.familiar.map((skill, index) => (
-                <Chip
-                  key={index}
-                  label={skill}
-                  sx={{ mr: 1, mb: 1 }}
-                />
-              ))}
-            </Grid>
-          </Grid>
         </Box>
       </Container>
     </Box>

@@ -11,6 +11,7 @@ import {
 import DownloadIcon from '@mui/icons-material/Download';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ArticleIcon from '@mui/icons-material/Article';
+import cvFile from '../assets/Shikhar_Mandloi_CV.pdf'; // Add this import
 
 const CVButton = ({ variant = "contained", size = "medium" }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,10 +26,9 @@ const CVButton = ({ variant = "contained", size = "medium" }) => {
   };
 
   const handleDownload = () => {
-    const cvUrl = '/Shikhar_Mandloi_CV.pdf';
     const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'Shikhar_Mandloi_CV.pdf';
+    link.href = cvFile;
+    link.setAttribute('download', 'Shikhar_Mandloi_CV.pdf');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -36,8 +36,7 @@ const CVButton = ({ variant = "contained", size = "medium" }) => {
   };
 
   const handleView = () => {
-    const viewerUrl = '/Shikhar_Mandloi_CV.pdf';
-    window.open(viewerUrl, '_blank', 'noopener,noreferrer');
+    window.open(cvFile, '_blank', 'noopener,noreferrer');
     handleClose();
   };
 
@@ -155,4 +154,4 @@ const CVButton = ({ variant = "contained", size = "medium" }) => {
   );
 };
 
-export default CVButton; 
+export default CVButton;
