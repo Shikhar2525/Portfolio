@@ -46,18 +46,21 @@ function App() {
       <Box
         component="main"
         sx={{
-          overflowX: 'hidden', // Prevent horizontal scroll
+          overflowX: 'hidden', // Keep this
           width: '100%',
-          maxWidth: '100vw',
           position: 'relative',
           '& > *': {
             maxWidth: '100%',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
           },
-          // Add this to remove any potential gaps
-          '& > div': {
-            marginBottom: '-1px', // Overlap sections slightly to prevent gaps
-          }
+          // Remove maxWidth: '100vw' and add these to prevent scroll
+          margin: 0,
+          padding: 0,
+          '&::-webkit-scrollbar': {
+            display: 'none', // Hide scrollbar for webkit browsers
+          },
+          msOverflowStyle: 'none', // Hide scrollbar for IE/Edge
+          scrollbarWidth: 'none', // Hide scrollbar for Firefox
         }}
       >
         <Suspense fallback={<LoadingFallback />}>
